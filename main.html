@@ -27,11 +27,11 @@
 		})
 	}
 
-	function postData(url,keyword) {
+	function postData(url, keyword) {
 		let mydat = new FormData();
 		
-		mydat.append( "f",keyword);
-		fetch(url,{
+		mydat.append("f", keyword); // 傳進的值變成表單欄位
+		fetch(url,{ // 原來表單
 			method: 'POST', // or 'GET', 'PUT'
 			body: mydat
 			//body: JSON.stringify(data)
@@ -40,13 +40,13 @@
 		.then(
 			function(res) {
 				//console.log(res)
-				return res.json();
+				return res.json(); // 轉成 json 物件
 			}
 		)
 		.then(
 			function(data) {
 				//console.log(data)
-				json2table(data,'main');
+				json2table(data, 'main');
 			}
 		)
 	}
@@ -77,14 +77,14 @@
 	}
 
 	
-	function json2table(json,divID) {
+	function json2table(json, divID) {
 		// Get keys (=cells) of each items
-		const keys = Object.keys(json[0]);
+		const keys = Object.keys(json[0]); // 將鍵值取出
 
 		// Build the table header
 		const header = `<thead><tr>` + 
-		keys.map(key => `<th>${key}</th>`)
-		  .join('') + `</thead></tr>`;
+		keys.map(key => `<th>${key}</th>`) // 抽出每一個 key 當作欄位
+		  .join('') + `</thead></tr>`; // 每一個陣列接成字串
   
 		// Build the table body
 		const body = `<tbody>` +
@@ -95,7 +95,7 @@
 
 		// Build the final table
 		const table = `
-		<table>
+		<table border='1'>
 		  ${header}
 		  ${body}
 		</table>
@@ -120,13 +120,13 @@
   <body>
   <!-- URL: <input id="myurl" type='text'> <button onclick="loadPage()">load url</button><button onclick="loadJSON()">load json to table</button><br /> -->
   URL: 
-  <select id="myurl" onchange="loadPage()">
+  <!-- <select id="myurlmyurl" onchange="loadPage()">
 	  <option value="1.php">page 1</option>
 	  <option value="2.php? f=1.jpg">Page 2:1.jpg</option>
 	  <option value="2.php? f=2.jpg">Page 2:2.jpg</option>
 	  <option value="4.php? f=8787">page 4</option>
-  </select>
-  <input id="yyy" type='text'> 
+  </select> -->
+  <input id="myurl" type='text'> 
   <button onclick="loadPage()">load url</button>
   <button onclick="loadJSON()">load json to table</button><br />
   <a href="javascript:loadPage()">LoadPage</a>
