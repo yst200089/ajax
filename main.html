@@ -16,13 +16,13 @@
 	<script>
 	function loadURL(url,divID) {
 		fetch(url)
-		.then(function(resp){
-				return resp.text();
+		.then(function(resp){ // 等前面函數的回傳值，當作輸入
+				return resp.text(); // 內容轉成 text
 		})
-		.then(function(text) {
+		.then(function(text) { // 等前面函數的回傳值，當作輸入
 			if (text){
-				el = document.getElementById(divID);
-				el.innerHTML=text;
+				el = document.getElementById(divID); // 取得元件
+				el.innerHTML = text; // 設定元件內容成 text
 			}
 		})
 	}
@@ -106,20 +106,31 @@
 	}
 
 	function loadPage() {
-		let url=document.getElementById('myurl').value;
+		let url = document.getElementById('myurl').value;
 		console.log(url);
-		loadURL(url, 'main');
+		loadURL(url, 'main');// 讀取網址後，將內容塞入 main 區塊
 	}
 	
 	function loadJSON() {
-		let keyw=document.getElementById('myurl').value;
+		let keyw = document.getElementById('myurl').value;
 		postData("3.php", keyw);
 	}
 	</script>
   </head>
   <body>
-  URL: <input id="myurl" type='text'> <button onclick="loadPage()">load url</button>
-<button onclick="loadJSON()">load json to table</button>
+  <!-- URL: <input id="myurl" type='text'> <button onclick="loadPage()">load url</button><button onclick="loadJSON()">load json to table</button><br /> -->
+  URL: 
+  <select id="myurl" onchange="loadPage()">
+	  <option value="1.php">page 1</option>
+	  <option value="2.php? f=1.jpg">Page 2:1.jpg</option>
+	  <option value="2.php? f=2.jpg">Page 2:2.jpg</option>
+	  <option value="4.php? f=8787">page 4</option>
+  </select>
+  <input id="yyy" type='text'> 
+  <button onclick="loadPage()">load url</button>
+  <button onclick="loadJSON()">load json to table</button><br />
+  <a href="javascript:loadPage()">LoadPage</a>
+  <a href='#' onclick="loadPage()">LoadPage</a><br />
 <!-- main working div-->
 <div id="main">hello</div>
 </body>
