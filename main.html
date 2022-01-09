@@ -51,9 +51,9 @@
 		)
 	}
 	
-	function postForm(url,formID) {
+	function postForm(url, formID) {
 		let mydat = new FormData();
-		myform = document.getElementById(formID);		
+		myform = document.getElementById(formID);
 		for (const pair of new FormData(myform)) {
 			mydat.append(pair[0], pair[1]);
 		}
@@ -83,15 +83,15 @@
 
 		// Build the table header
 		const header = `<thead><tr>` + 
-		keys.map(key => `<th>${key}</th>`) // 抽出每一個 key 當作欄位
+		  keys.map(key => `<th>${key}</th>`) // 抽出每一個 key 當作欄位
 		  .join('') + `</thead></tr>`; // 每一個陣列接成字串
   
 		// Build the table body
 		const body = `<tbody>` +
 		  json.map(row => `<tr>${Object.values(row)
 			.map(cell => `<td>${cell}</td>`)
-			.join('')}</tr>`
-		  ).join('');
+			.join('')}</tr>`)
+			.join('');
 
 		// Build the final table
 		const table = `
